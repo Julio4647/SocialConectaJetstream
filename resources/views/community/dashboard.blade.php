@@ -2,8 +2,7 @@
     <div class="">
         <div class=" ">
             <div class="bg-white ">
-                @include('components.welcome')
-
+                @include('community.index')
             </div>
         </div>
     </div>

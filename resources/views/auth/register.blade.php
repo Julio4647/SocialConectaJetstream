@@ -9,11 +9,11 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <select data-te-select-init name="usuarios">
-                <option value="1">Admin</option>
-                <option value="2">Coordinador</option>
-                <option value="3">Community</option>
-              </select>
+            <select name="role" id="role" required>
+                <option value="admin">Admin</option>
+                <option value="coordinador">Coordinador</option>
+                <option value="community">Community</option>
+            </select>
 
             <div>
                 <x-label for="name" value="{{ __('Name') }}" />

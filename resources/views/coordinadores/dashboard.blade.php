@@ -2,8 +2,7 @@
     <div class="">
         <div class=" ">
             <div class="bg-white ">
-                @include('components.welcome')
-
+                @include('coordinadores.index')
             </div>
         </div>
     </div>
