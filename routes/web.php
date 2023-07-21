@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\GrlController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,10 @@ Route::middleware([
 ])->group(function () {
     Route::get('dashboard',[GrlController::class,'index'
     ])->name('dashboard');
+
+    Route::get('/register',[GrlController::class,'registro'
+    ])->name('register');
+
     Route::post('nota/save', [GrlController::class, 'guardarNota'])->name('notaSave');
     Route::post('/search', [GrlController::class, 'search'])->name('notes.search');
 
@@ -50,5 +55,27 @@ Route::middleware([
 
     //Communitys
     Route::get('communitys', [GrlController::class, 'communitys'])->name('communitys');
+    Route::delete('/communitys/{id}', [GrlController::class, 'destroy'])->name('communitys.destroy');
+
+
+     //clientes
+
+     Route::get('/clientes', [ClientController::class, 'index'])->name('clientes');
+
+     // Mostrar formulario para registrar clientes
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+
+    // Guardar cliente en la base de datos
+    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+
+    // Mostrar formulario para actualizar un cliente
+    Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+
+    // Actualizar cliente en la base de datos
+    Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
+
+    Route::delete('/clients/{id}', [ClientController::class, 'destroy'] )->name('clients.destroy');
+
+
 
 });

@@ -55,6 +55,9 @@
                 </button>
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
+                        <a href="{{ route('register')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-purple-600 dark:text-white dark:hover:bg-gray-700">Registros +</a>
+                     </li>
+                    <li>
                         <a href="{{ route('administradores')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-purple-600 dark:text-white dark:hover:bg-gray-700">Administradores</a>
                      </li>
                     <li>
@@ -69,7 +72,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('clientes')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-600 dark:hover:bg-gray-700">
                     <img src="{{ asset('img/customers.svg') }}" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Mis clientes</span>

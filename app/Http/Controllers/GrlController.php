@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Client;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -16,6 +17,11 @@ class GrlController extends Controller
         $datos = Note::all(); // Suponiendo que tienes un modelo 'Nota' para las notas
         //return $datos;
         return view('dashboard',compact('datos'));
+    }
+
+    public function registro(){
+
+        return view('auth.register');
     }
 
 
@@ -155,5 +161,20 @@ class GrlController extends Controller
 
         return view('community.dashboard', compact('communitys'));
     }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+
+
+            $user->delete();
+            // También puedes eliminar el registro relacionado en la tabla "communitys" si tienes configurada la relación adecuadamente.
+            // Ejemplo: $user->community()->delete();
+
+            return redirect()->route('communitys')->with('success', 'Usuario eliminado exitosamente.');
+
+    }
+
+
 
 }

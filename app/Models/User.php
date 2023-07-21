@@ -61,4 +61,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    // Definir la relación entre User y Cliente
+    public function client()
+    {
+        return $this->hasOne(Client::class, 'communitys_id');
+    }
 }
