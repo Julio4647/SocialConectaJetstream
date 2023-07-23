@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\CordinatorController;
 use App\Http\Controllers\GrlController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +29,7 @@ Route::middleware([
     Route::get('dashboard',[GrlController::class,'index'
     ])->name('dashboard');
 
-    Route::get('/register',[GrlController::class,'registro'
-    ])->name('register');
+
 
     Route::post('nota/save', [GrlController::class, 'guardarNota'])->name('notaSave');
     Route::post('/search', [GrlController::class, 'search'])->name('notes.search');
@@ -50,12 +51,19 @@ Route::middleware([
 
     //Coordinador
 
-    Route::get('cordinadores', [GrlController::class,'cordinators'
+    Route::get('cordinadores', [CordinatorController::class,'index'
     ])->name('cordinador');
 
+    Route::delete('/cordinadores/{id}', [CordinatorController::class, 'destroy'])->name('coordinators.destroy');
+
+
     //Communitys
-    Route::get('communitys', [GrlController::class, 'communitys'])->name('communitys');
-    Route::delete('/communitys/{id}', [GrlController::class, 'destroy'])->name('communitys.destroy');
+    Route::get('/communitys', [CommunityController::class, 'index'])->name('communitys');
+
+    Route::get('/community/register', [CommunityController::class, 'showRegistrationForm'])->name('community.create');
+    Route::post('/community/register', [CommunityController::class, 'register'])->name('community.register');
+
+    Route::delete('/communitys/{id}', [CommunityController::class, 'destroy'])->name('communitys.destroy');
 
 
      //clientes

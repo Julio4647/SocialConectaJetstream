@@ -21,10 +21,13 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('expiration_date');
             $table->date('pay_day');
-            $table->bigInteger('communitys_id')->unsigned(); // Columna para el ID de la comunidad
+            $table->bigInteger('communitys_id')->unsigned()->nullable()->default(null); // Columna para el ID de la comunidad
             $table->timestamps();
             // Definir la clave foránea para enlazar con la tabla users (community)
-            $table->foreign('communitys_id')->references('id')->on('users')->onDelete('cascade');
+        $table->foreign('communitys_id')
+        ->references('id')
+        ->on('users')
+        ->onDelete('set null'); // Cambiar onDelete a 'set null'
 
         });
     }

@@ -13,6 +13,7 @@
                 <option value="admin">Admin</option>
                 <option value="coordinador">Coordinador</option>
                 <option value="community">Community</option>
+                <option value="agency">Agency</option>
             </select>
 
             <div>

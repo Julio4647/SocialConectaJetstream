@@ -68,4 +68,21 @@ class User extends Authenticatable
     {
         return $this->hasOne(Client::class, 'communitys_id');
     }
+
+
+
+    public function coordinator()
+    {
+        return $this->belongsTo(User::class, 'coordinator_id');
+    }
+
+    public function coordinators()
+{
+    return $this->belongsToMany(User::class, 'user_coordinator', 'user_id', 'coordinator_id');
+}
+
+public function communities()
+{
+    return $this->belongsToMany(User::class, 'user_coordinator', 'coordinator_id', 'user_id');
+}
 }

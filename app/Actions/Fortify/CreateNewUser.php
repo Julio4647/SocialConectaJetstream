@@ -27,7 +27,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-            'role' => ['nullable', 'string', Rule::in(['admin', 'coordinador', 'community'])], // Asegúrate de listar aquí todos los roles válidos.
+            'role' => ['nullable', 'string', Rule::in(['admin', 'coordinador', 'community', 'agency'])], // Asegúrate de listar aquí todos los roles válidos.
             ])->validate();
 
         //dd($input['role']);
