@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('user_coordinator', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('coordinator_id');
+            $table->unsignedBigInteger('coordinator_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('coordinator_id')->references('id')->on('users');
         });
     }

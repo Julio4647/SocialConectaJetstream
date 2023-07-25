@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CordinatorController;
@@ -49,10 +50,22 @@ Route::middleware([
     Route::get('/administradores/{id}/actualizar', [GrlController::class, 'actualizaradministradores'])->name('administradores.actualizar');
     Route::put('/administradores/{id}', [GrlController::class, 'updateadministradores'])->name('administradores.update');
 
+
+    //agency
+    Route::get('/agencys', [AgencyController::class, 'index'])->name('agencys');
+
+
+    Route::delete('/agencys/{id}', [AgencyController::class, 'destroy'])->name('agencies.destroy');
+
+
     //Coordinador
 
     Route::get('cordinadores', [CordinatorController::class,'index'
     ])->name('cordinador');
+    Route::get('/coordinadores/register', [CordinatorController::class, 'create'])->name('coordinador.create');
+    Route::post('/coordinadores/register', [CordinatorController::class, 'store'])->name('coordinador.register');
+
+    Route::put('/coordinadores/{coordinatorId}',  [CordinatorController::class, 'updateAgencyId'])->name('user_agency.update');
 
     Route::delete('/cordinadores/{id}', [CordinatorController::class, 'destroy'])->name('coordinators.destroy');
 
@@ -62,6 +75,7 @@ Route::middleware([
 
     Route::get('/community/register', [CommunityController::class, 'showRegistrationForm'])->name('community.create');
     Route::post('/community/register', [CommunityController::class, 'register'])->name('community.register');
+    Route::put('/community/{userId}',  [CommunityController::class, 'updateCordinatorId'])->name('user_cordinator.update');
 
     Route::delete('/communitys/{id}', [CommunityController::class, 'destroy'])->name('communitys.destroy');
 

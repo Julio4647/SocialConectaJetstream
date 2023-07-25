@@ -95,3 +95,27 @@
         });
     @endif
 </script>
+
+
+<script>
+
+    function getNextMonthDate(dateString) {
+        let currentDate = new Date(dateString);
+        let nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
+
+
+        let year = nextMonthDate.getFullYear();
+        let month = (nextMonthDate.getMonth() + 1).toString().padStart(2, '0');
+        let day = nextMonthDate.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+
+    $(document).ready(function() {
+        $('input[name="pay_day"]').on('change', function() {
+            let selectedDate = $(this).val();
+            let nextMonthDate = getNextMonthDate(selectedDate);
+            $(this).val(nextMonthDate);
+        });
+    });
+</script>

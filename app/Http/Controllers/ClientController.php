@@ -89,7 +89,7 @@ class ClientController extends Controller
         $cliente = Client::findOrFail($id);
         $cliente->delete();
 
-        return redirect()->route('clientes')->with('success', 'Coordinador eliminado correctamente');
+        return redirect()->route('clientes')->with('success', 'cliente eliminado correctamente');
     }
 
 }

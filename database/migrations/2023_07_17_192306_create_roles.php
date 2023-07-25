@@ -15,6 +15,7 @@ return new class extends Migration
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'coordinador']);
         Role::create(['name' => 'community']);
+        Role::create(['name' => 'agency']);
     }
 
     /**

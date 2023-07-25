@@ -69,20 +69,36 @@ class User extends Authenticatable
         return $this->hasOne(Client::class, 'communitys_id');
     }
 
-
-
     public function coordinator()
     {
         return $this->belongsTo(User::class, 'coordinator_id');
     }
 
     public function coordinators()
-{
-    return $this->belongsToMany(User::class, 'user_coordinator', 'user_id', 'coordinator_id');
-}
+    {
+        return $this->belongsToMany(User::class, 'user_coordinator', 'user_id', 'coordinator_id');
+    }
 
-public function communities()
-{
-    return $this->belongsToMany(User::class, 'user_coordinator', 'coordinator_id', 'user_id');
-}
+    public function communities()
+    {
+        return $this->belongsToMany(User::class, 'user_coordinator', 'coordinator_id', 'user_id');
+    }
+
+    public function agencys()
+    {
+        return $this->hasOne(User::class, 'coordinator_id');
+    }
+
+
+    public function agency()
+    {
+        return $this->belongsToMany(User::class, 'user_agency', 'coordinator_id', 'agency_id');
+    }
+
+    // En el modelo User
+    public function agencies()
+    {
+        return $this->belongsToMany(User::class, 'user_agency', 'coordinator_id', 'agency_id')
+            ->withPivot('id');
+    }
 }

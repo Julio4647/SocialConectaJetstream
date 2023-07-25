@@ -56,13 +56,13 @@
                                     @php
                                         $diasDiferencia = Carbon\Carbon::parse($cliente->pay_day)->diffInDays(Carbon\Carbon::parse($cliente->expiration_date));
                                         $plazo = '';
-                                        if ($diasDiferencia >= 365 * 5) {
+                                        if ($diasDiferencia  > 365  *  3) {
                                             $plazo = 'For Life';
-                                        } elseif ($diasDiferencia >= 365) {
+                                        } elseif ($diasDiferencia >= 365 && $diasDiferencia  <= 365  *   3) {
                                             $plazo = 'Anual';
-                                        } elseif ($diasDiferencia > 30) {
+                                        } elseif ($diasDiferencia >= 30 && $diasDiferencia < 365) {
                                             $plazo = 'Mensual';
-                                        } elseif ($diasDiferencia < 30) {
+                                        } elseif ($diasDiferencia <= 29) {
                                             $plazo = 'No definido';
                                         }
                                     @endphp

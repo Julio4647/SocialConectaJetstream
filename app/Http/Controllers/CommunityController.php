@@ -14,9 +14,10 @@ class CommunityController extends Controller
     {
         // Obtiene todos los usuarios con rol "community"
         $communityUsers = User::role('community')->get();
+        $coordinators = User::role('coordinador')->get();
 
         // Retorna la vista con la lista de usuarios "communitys"
-        return view('community.dashboard', compact('communityUsers'));
+        return view('community.dashboard', compact('communityUsers', 'coordinators'));
     }
 
 
@@ -47,7 +48,35 @@ class CommunityController extends Controller
 
         return redirect()->route('communitys')->with('success', 'Usuario "community" registrado correctamente.');
     }
+    public function updateCordinatorId(Request $request, $userId)
+    {
+        try{
+            // Valida el nuevo agency_id del formulario
+        $validatedData = $request->validate([
+            'coordinador_id' => 'nullable|exists:users,id',
+        ]);
 
+        // Encuentra el registro existente con el coordinator_id proporcionado
+        $userCordinator = UserCoordinator::where('user_id', $userId)->first();
+
+        // Si no se encuentra el registro, puedes mostrar un mensaje de error o redireccionar a alguna otra parte de la aplicación
+        if (!$userCordinator) {
+            return redirect()->back()->with('error', 'Registro no encontrado');
+        }
+
+        // Actualiza el agency_id con el valor proporcionado
+        $userCordinator->coordinator_id = $request->input('coordinador_id');
+
+        // Guarda los cambios en la base de datos
+        $userCordinator->save();
+
+        // Redirecciona a donde desees después de actualizar el registro
+        return redirect()->route('communitys')->with('success', 'Registro actualizado exitosamente');
+
+        }catch(\Exception $e){
+            dd($e);
+        }
+    }
 
     public function destroy($id)
     {
