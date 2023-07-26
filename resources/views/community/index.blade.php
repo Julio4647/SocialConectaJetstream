@@ -10,7 +10,7 @@
         <div class="bg-white shadow-md rounded my-6">
             <a href="{{ route('community.create') }}"
                 class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                Agregar Community
+                Asignar Coordinador a Community Manager
             </a>
             <div class="overflow-x-auto">
                 <table class="min-w-max w-full table-auto" style="margin-top: 15px">
@@ -31,7 +31,7 @@
                                 <td class="py-3 px-6 text-left">{{ $user->last_name }}</td>
                                 <td class="py-3 px-6 text-left">
                                     @if ($user->coordinators->count() > 0)
-                                        {{ $user->coordinators->first()->name }}
+                                        {{ $user->coordinators->first()->name }} {{ $user->coordinators->first()->last_name }}
                                     @else
                                         Not Assigned
                                     @endif
@@ -46,7 +46,7 @@
                                     <button data-modal-target="update-modal-{{ $user->id }}"
                                         data-modal-toggle="update-modal-{{ $user->id }}" type="button"
                                         class="text-white bg-gradient-to-br from-blue-500 to-blue-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                                        Actualizar Agency ID
+                                        Actualizar Coordinador
                                     </button>
                                     <button data-modal-target="popup-modal-{{ $user->id }}"
                                         data-modal-toggle="popup-modal-{{ $user->id }}" type="button"
@@ -119,7 +119,7 @@
                                         </button>
                                         <div class="p-6 text-center">
                                             <h3 class="mb-5 text-lg font-normal text-black-500 dark:text-gray-400">
-                                                Actualizar Agency Manager</h3>
+                                                Actualizar Coordinador</h3>
                                             <form
                                                 action="{{ route('user_cordinator.update', ['userId' => $user->id]) }}"
                                                 method="post">

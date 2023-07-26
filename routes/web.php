@@ -30,7 +30,9 @@ Route::middleware([
     Route::get('dashboard',[GrlController::class,'index'
     ])->name('dashboard');
 
+    Route::get('/resgistro_usuarios', [GrlController::class,'register'])->name('register');
 
+    Route::post('/resgistro_usuarios', [GrlController::class,'crearusuarios'])->name('registro.save');
 
     Route::post('nota/save', [GrlController::class, 'guardarNota'])->name('notaSave');
     Route::post('/search', [GrlController::class, 'search'])->name('notes.search');

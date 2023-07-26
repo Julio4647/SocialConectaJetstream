@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Laravel\Jetstream\Jetstream;
 use Spatie\Permission\Models\Role;
 
 class GrlController extends Controller
@@ -19,11 +21,32 @@ class GrlController extends Controller
         return view('dashboard',compact('datos'));
     }
 
-    public function registro(){
+    public function register(){
 
-        return view('auth.register');
+        return view('register.dashboard');
     }
 
+    public function crearusuarios(Request $request){
+
+
+        $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $administradores = new User;
+        $administradores->name = $request->name;
+        $administradores->last_name = $request->last_name;
+        $administradores->email = $request->email;
+        $administradores->password = Hash::make($request->password);
+        $administradores->save();
+
+        $administradores->assignRole($request['role']);
+
+        return redirect()->route('register');
+    }
 
     public function guardarNota(Request $request)
     {
@@ -134,46 +157,13 @@ class GrlController extends Controller
 
     public function eliminaradministradores($id)
     {
-        $administrador = Admin::findOrFail($id);
-        $administrador->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
 
         return redirect()->action([GrlController::class, 'administradores'])->with('success', 'Coordinador eliminado correctamente');
     }
 
-    //coordinadores
 
-    public function cordinators()
-    {
-
-
-            $coordinadors = User::role('coordinador')->get();
-
-            return view('coordinadores.dashboard', compact('coordinadors'));
-    }
-
-
-
-    ///Communitys
-    public function communitys()
-    {
-
-        $communitys = User::role('community')->get();
-
-        return view('community.dashboard', compact('communitys'));
-    }
-
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
-
-
-            $user->delete();
-            // También puedes eliminar el registro relacionado en la tabla "communitys" si tienes configurada la relación adecuadamente.
-            // Ejemplo: $user->community()->delete();
-
-            return redirect()->route('communitys')->with('success', 'Usuario eliminado exitosamente.');
-
-    }
 
 
 
