@@ -1,10 +1,10 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Información del perfil') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Actualice la información de perfil y la dirección de correo electrónico de su cuenta.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -24,7 +24,7 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-label for="photo" value="{{ __('Photo') }}" />
+                <x-label for="photo" value="{{ __('Foto') }}" />
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -39,12 +39,12 @@
                 </div>
 
                 <x-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Select A New Photo') }}
+                    {{ __('Seleccionar nueva foto') }}
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
                     <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Remove Photo') }}
+                        {{ __('Remover foto') }}
                     </x-secondary-button>
                 @endif
 
@@ -58,13 +58,13 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
+            <x-label for="name" value="{{ __('Nombre') }}" />
             <x-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="last_name" value="{{ __('Last_Name') }}" />
+            <x-label for="last_name" value="{{ __('Apellidos') }}" />
             <x-input id="last_name" type="text" class="mt-1 block w-full" wire:model.defer="state.last_name" required autocomplete="last_name" />
             <x-input-error for="last_name" class="mt-2" />
         </div>
@@ -95,11 +95,11 @@
 
     <x-slot name="actions">
         <x-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Guardado.') }}
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Guardar') }}
         </x-button>
     </x-slot>
 </x-form-section>
