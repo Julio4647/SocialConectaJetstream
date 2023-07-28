@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fsocialacademy.com.mx%2F&psig=AOvVaw3isNb-nM_0FKDpPwoiSlMK&ust=1690610220475000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLDr7f_bsIADFQAAAAAdAAAAABAE" width="400" alt="Social Conecta Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
