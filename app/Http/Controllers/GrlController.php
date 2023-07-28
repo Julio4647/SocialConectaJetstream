@@ -120,7 +120,7 @@ class GrlController extends Controller
     public function actualizaradministradores($id)
     {
 
-        $administradores = Admin::findOrFail($id);
+        $administradores = User::findOrFail($id);
 
         return view('administradores.update', compact('administradores'));
     }
@@ -137,7 +137,7 @@ class GrlController extends Controller
         ]);
 
         // Buscar el coordinador por su ID
-        $administradores = Admin::findOrFail($id);
+        $administradores = User::findOrFail($id);
 
         // Actualizar los datos del coordinador
         $administradores->name = $request->name;

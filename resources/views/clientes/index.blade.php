@@ -3,10 +3,15 @@
 
 <div class="p-4 sm:ml-64">
     <div class="p-4 dark:border-gray-700 mt-14">
-        <div class="bg-white shadow-md rounded my-6">
-            <a href="{{ route('clients.create') }}" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                Agregar Cliente
-            </a>
+        <div class="my-6">
+            <h1 style="font-size: 1.5rem">
+                <p>Clientes</p>
+            </h1>
+        </div>
+        <a href="{{ route('clients.create') }}" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            Agregar Cliente
+        </a>
+        <div class="bg-white shadow-2xl rounded my-6">
             <div class="overflow-x-auto">
                 <table class="min-w-max w-full table-auto" style="margin-top: 15px">
                     <thead>
@@ -77,9 +82,13 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-6 text-center">
-                                    <a href="{{ route('clients.edit', $cliente->id) }}"
-                                        class="text-gray-900 bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Editar</a>
-                                        <button data-modal-target="popup-modal-{{ $cliente->id }}" data-modal-toggle="popup-modal-{{ $cliente->id }}" type="button" class="text-white bg-gradient-to-br from-red-600 to-red-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Eliminar</button>
+                                    <button onclick="window.location.href='{{ route('clients.edit', $cliente->id) }}'" class="text-gray-900 bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                        <img src="{{ asset('img/edit.svg') }}" alt="">
+                                      </button>
+
+                                        <button data-modal-target="popup-modal-{{ $cliente->id }}" data-modal-toggle="popup-modal-{{ $cliente->id }}" type="button" class="text-white bg-gradient-to-br from-red-600 to-red-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                            <img src="{{ asset('img/eliminar.svg') }}"  alt="">
+                                        </button>
 
                                     </td>
                             </tr>

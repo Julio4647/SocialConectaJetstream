@@ -49,8 +49,10 @@ Route::middleware([
 
     Route::delete('/administradores/{id}', [GrlController::class, 'eliminaradministradores'])->name('administradores.eliminar');
     //Actualizar
-    Route::get('/administradores/{id}/actualizar', [GrlController::class, 'actualizaradministradores'])->name('administradores.actualizar');
-    Route::put('/administradores/{id}', [GrlController::class, 'updateadministradores'])->name('administradores.update');
+
+    Route::put('/administradores/{id}',  [GrlController::class, 'updateadministradores'])->name('administradores.actualizar');
+
+
 
 
     //agency
