@@ -72,7 +72,7 @@ class GrlController extends Controller
                      ->orWhere('description', 'like', '%' . $searchTerm . '%')
                      ->get();
 
-        return view('layouts.dashboard', ['datos' => $datos]);
+        return view('dashboard', ['datos' => $datos]);
     }
 
 //Administradores

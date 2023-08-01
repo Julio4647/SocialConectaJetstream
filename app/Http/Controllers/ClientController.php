@@ -5,13 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
 
     public function index()
     {
-        $clients = Client::all();
+        // Obtener el usuario autenticado
+        $user = Auth::user();
+
+        // Obtener los roles del usuario usando la relación "roles"
+        $roles = $user->roles->pluck('name');
+
+
+        if ($roles->contains('admin')) {
+            // Si el usuario tiene el rol "admin", mostrar todos los clientes
+            $clients = Client::all();
+        } elseif ($roles->contains('community')) {
+            // Si el usuario tiene el rol "community", mostrar solo los clientes asignados a su ID
+            $clients = Client::where('communitys_id', $user->id)->get();
+        } else {
+            // En caso de que el usuario tenga otro rol, muestra un mensaje de error o haz lo que sea apropiado para tu caso
+            abort(403, 'Acceso denegado');
+        }
 
         return view('clientes.dashboard', compact('clients'));
     }

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserAgency;
 use App\Models\UserCoordinator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CordinatorController extends Controller
@@ -17,7 +18,14 @@ class CordinatorController extends Controller
         $userAgencies = User::role('coordinador')->get();
         $agencies = User::role('agency')->get();
 
-        return view('coordinadores.dashboard', compact('userAgencies', 'agencies'));
+        $coordinatorId = Auth::id();
+        $user = Auth::user();
+        $roles = $user->roles->pluck('name');
+
+        $coordinatorAgency = $user->agency;
+
+
+        return view('coordinadores.dashboard', compact('userAgencies', 'agencies', 'coordinatorId', 'roles', 'coordinatorAgency'));
     }
 
     public function create()

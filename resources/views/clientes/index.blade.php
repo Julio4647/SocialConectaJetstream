@@ -17,7 +17,7 @@
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-center">ID</th>
-                            <th class="py-3 px-6 text-center">Communitys id</th>
+                            <th class="py-3 px-6 text-center">Community</th>
                             <th class="py-3 px-6 text-center">Nombre</th>
                             <th class="py-3 px-6 text-center">Apellido</th>
                             <th class="py-3 px-6 text-center">Telefono</th>
@@ -34,7 +34,7 @@
                         @foreach ($clients as $cliente)
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
                                 <td class="py-3 px-6 text-center">{{ $cliente->id }}</td>
-                                <td class="py-3 px-6 text-center">{{ $cliente->users ? $cliente->users->name : 'Sin usuario asociado' }}</td>
+                                <td class="py-3 px-6 text-center">{{ $cliente->users ? $cliente->users->name : 'Sin community asignado' }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->name }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->last_name }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->phone }}</td>

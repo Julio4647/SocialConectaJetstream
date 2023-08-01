@@ -13,7 +13,6 @@
                 <table class="min-w-max w-full table-auto rounded-lg" style="margin-top: 15px">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal rounded-lg">
-                            <th class="py-3 px-6 text-left">ID</th>
                             <th class="py-3 px-6 text-left">Nombre</th>
                             <th class="py-3 px-6 text-left">Apellido</th>
                             <th class="py-3 px-6 text-left">Email</th>
@@ -23,7 +22,6 @@
                     <tbody class="text-gray-600 text-sm font-light">
                         @foreach ($administradores as $administrador)
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                <td class="py-3 px-6 text-left">{{ $administrador->id }}</td>
                                 <td class="py-3 px-6 text-left">{{ $administrador->name }}</td>
                                 <td class="py-3 px-6 text-left">{{ $administrador->last_name }}</td>
                                 <td class="py-3 px-6 text-left">{{ $administrador->email }}</td>

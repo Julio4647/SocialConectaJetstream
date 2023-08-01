@@ -63,6 +63,11 @@ class User extends Authenticatable
     ];
 
 
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
+
     // Definir la relación entre User y Cliente
     public function client()
     {

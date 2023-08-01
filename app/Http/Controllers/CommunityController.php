@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\User;
 use App\Models\UserCoordinator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CommunityController extends Controller
@@ -15,9 +16,13 @@ class CommunityController extends Controller
         // Obtiene todos los usuarios con rol "community"
         $communityUsers = User::role('community')->get();
         $coordinators = User::role('coordinador')->get();
+        $coordinatorId = Auth::id();
+        $user = Auth::user();
+        $roles = $user->roles->pluck('name');
+
 
         // Retorna la vista con la lista de usuarios "communitys"
-        return view('community.dashboard', compact('communityUsers', 'coordinators'));
+        return view('community.dashboard', compact('communityUsers', 'coordinators', 'coordinatorId', 'roles'));
     }
 
 

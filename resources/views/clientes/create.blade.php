@@ -14,47 +14,58 @@
                         <a href="{{ route('clientes') }}"
                             class="text-white bg-gradient-to-br from-green-400 to-green-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Regresar</a>
                         <h2 style="margin-top: 15px">Agregar Cliente</h2>
-                        <form action="{{ route('clients.store') }}" method="POST">
+                        <form action="{{ route('clients.store') }}" method="POST" class="flex flex-wrap justify-center">
                             @csrf
-                            <label for="name">Nombre:</label>
-                            <input type="text" name="name" required>
-                            <br>
+                            <div class="w-full md:w-1/3 p-2">
+                                <label for="name">Nombre:</label>
+                                <input type="text" name="name" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            </div>
 
-                            <label for="last_name">Apellido:</label>
-                            <input type="text" name="last_name" required>
-                            <br>
+                            <div class="w-full md:w-1/3 p-2">
+                                <label for="last_name">Apellido:</label>
+                                <input type="text" name="last_name" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            </div>
 
-                            <label for="phone">Teléfono:</label>
-                            <input type="text" name="phone" required>
-                            <br>
+                            <div class="w-full md:w-1/3 p-2">
+                                <label for="phone">Teléfono:</label>
+                                <input type="text" name="phone" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            </div>
 
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" required>
-                            <br>
+                            <div class="w-full md:w-1/3 p-2">
+                                <label for="email">Email:</label>
+                                <input type="email" name="email" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            </div>
 
-                            <label for="start_date">Fecha de inicio:</label>
-                            <input type="date" name="start_date" required>
-                            <br>
+                            <div class="w-full md:w-1/3 p-2">
+                                <label for="start_date">Fecha de inicio:</label>
+                                <input type="date" name="start_date" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            </div>
 
-                            <label for="expiration_date">Fecha de expiración:</label>
-                            <input type="date" name="expiration_date" required>
-                            <br>
+                            <div class="w-full md:w-1/3 p-2">
+                                <label for="expiration_date">Fecha de expiración:</label>
+                                <input type="date" name="expiration_date" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            </div>
 
-                            <label for="pay_day">Día de pago:</label>
-                            <input type="date" name="pay_day" required>
-                            <br>
+                            <div class="w-full md:w-1/3 p-2">
+                                <label for="pay_day">Día de pago:</label>
+                                <input type="date" name="pay_day" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            </div>
 
-                            <label for="communitys_id">ID de comunidad:</label>
-                            <select name="communitys_id" required>
-                                <option value="">Seleccionar comunidad</option>
-                                @foreach ($communities as $community)
-                                    <option value="{{ $community->id }}">{{ $community->name }}</option>
-                                @endforeach
-                            </select>
-                            <br>
+                            <div class="w-full p-2">
+                                <label for="communitys_id">ID de comunidad:</label>
+                                <select name="communitys_id" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    <option value="">Seleccionar comunidad</option>
+                                    @foreach ($communities as $community)
+                                        <option value="{{ $community->id }}">{{ $community->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                            <button type="submit">Registrar</button>
+                            <div class="w-full p-2">
+                                <button type="submit" class="w-full bg-indigo-500 text-white font-bold py-2 px-4 rounded">Registrar</button>
+                            </div>
                         </form>
+
                     </div>
                 </div>
 
