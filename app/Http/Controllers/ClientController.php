@@ -22,13 +22,23 @@ class ClientController extends Controller
         if ($roles->contains('admin')) {
             // Si el usuario tiene el rol "admin", mostrar todos los clientes
             $clients = Client::all();
+
+        } elseif ($roles->contains('agency')) {
+                // Si el usuario tiene el rol "admin", mostrar todos los clientes
+                $clients = Client::all();
+         } elseif ($roles->contains('coordinador')) {
+                // Si el usuario tiene el rol "admin", mostrar todos los clientes
+                $clients = Client::all();
         } elseif ($roles->contains('community')) {
             // Si el usuario tiene el rol "community", mostrar solo los clientes asignados a su ID
             $clients = Client::where('communitys_id', $user->id)->get();
+            $totalClients = $clients->count();
         } else {
             // En caso de que el usuario tenga otro rol, muestra un mensaje de error o haz lo que sea apropiado para tu caso
             abort(403, 'Acceso denegado');
         }
+
+
 
         return view('clientes.dashboard', compact('clients'));
     }
@@ -49,6 +59,8 @@ class ClientController extends Controller
             'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'email' => 'required|email|unique:clients',
+            'plan' => 'required|string',
+            'agencia' => 'required|string',
             'start_date' => 'required|date',
             'expiration_date' => 'required|date',
             'pay_day' => 'required|date',
@@ -87,6 +99,8 @@ class ClientController extends Controller
             'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'email' => 'required|email|unique:clients,email,' . $id,
+            'plan' => 'required|string',
+            'agencia' => 'required|string',
             'start_date' => 'required|date',
             'expiration_date' => 'required|date',
             'pay_day' => 'required|date',

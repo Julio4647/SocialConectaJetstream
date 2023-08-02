@@ -13,7 +13,7 @@ class Client extends Model
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     protected $fillable = [
-        'name', 'last_name', 'phone', 'email', 'start_date', 'expiration_date', 'pay_day', 'communitys_id',
+        'name', 'last_name', 'phone', 'email', 'plan', 'agencia', 'start_date', 'expiration_date', 'pay_day', 'communitys_id',
     ];
 
     // Relación con el modelo User (Community)

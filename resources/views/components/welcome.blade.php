@@ -8,7 +8,7 @@
                     <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
                         <img src="{{ asset('img/user.svg') }}" alt="" class="mr-2">
                         <p class="text-lg text-gray-400 dark:text-gray-500 ">
-                            Clientes
+                            Clientes {{$totalClientes}}
                         </p>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
                         <img src="{{ asset('img/renew.svg') }}" alt="" class="mr-2">
                         <p class="text-md text-gray-400 dark:text-gray-500">
-                            Renovados
+                            Renovados {{ $clientesActivos }}
                         </p>
                     </div>
 
@@ -29,7 +29,7 @@
                     <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
                         <img src="{{ asset('img/cancel.svg') }}" alt="" class="mr-2">
                         <p class="text-md text-gray-400 dark:text-gray-500">
-                            Cancelados
+                            Cancelados {{ $clientesVencidos }}
                         </p>
                     </div>
 
@@ -40,7 +40,7 @@
                     <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
                         <img src="{{ asset('img/pause.svg') }}" alt="" class="mr-2">
                         <p class="text-lg text-gray-400 dark:text-gray-500">
-                            Pausados
+                            Pausados {{$clientesPendientes}}
                         </p>
                     </div>
                 </div>

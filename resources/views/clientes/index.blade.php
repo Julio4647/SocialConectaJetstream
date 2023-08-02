@@ -22,6 +22,8 @@
                             <th class="py-3 px-6 text-center">Apellido</th>
                             <th class="py-3 px-6 text-center">Telefono</th>
                             <th class="py-3 px-6 text-center">Email</th>
+                            <th class="py-3 px-6 text-center">Plan</th>
+                            <th class="py-3 px-6 text-center">Agencia</th>
                             <th class="py-3 px-6 text-center">Fecha Inicio</th>
                             <th class="py-3 px-6 text-center">Fecha Vencimiento</th>
                             <th class="py-3 px-6 text-center">Fecha Pago</th>
@@ -39,6 +41,8 @@
                                 <td class="py-3 px-6 text-center">{{ $cliente->last_name }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->phone }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->email }}</td>
+                                <td class="py-3 px-6 text-center">{{ $cliente->plan }}</td>
+                                <td class="py-3 px-6 text-center">{{ $cliente->agencia }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->start_date }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->expiration_date }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->pay_day }}</td>

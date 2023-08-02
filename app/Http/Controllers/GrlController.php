@@ -6,8 +6,10 @@ use App\Models\Admin;
 use App\Models\Client;
 use App\Models\Note;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Laravel\Jetstream\Jetstream;
@@ -15,18 +17,49 @@ use Spatie\Permission\Models\Role;
 
 class GrlController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $datos = Note::all(); // Suponiendo que tienes un modelo 'Nota' para las notas
-        //return $datos;
-        return view('dashboard',compact('datos'));
+
+
+
+        $user = Auth::user();
+
+        // Obtener los roles del usuario usando la relación "roles"
+        $roles = $user->roles->pluck('name');
+
+        $totalClientes = 0; // Inicializamos la variable totalClientes en 0
+
+        // Si el usuario tiene el rol "community", mostrar solo los clientes asignados a su ID
+        $clients = Client::where('communitys_id', $user->id)->get();
+        $totalClientes = $clients->count(); // Obtenemos el total de clientes para el rol "community"
+
+        $clientesActivos = $clients->filter(function ($cliente) {
+            return Carbon::parse($cliente->expiration_date) >= now();
+        })->count();
+
+        // Calcular el número de clientes cancelados o vencidos
+        $clientesVencidos = $clients->filter(function ($cliente) {
+            return Carbon::parse($cliente->expiration_date) <= now();
+        })->count();
+
+        // Calcular el número de clientes pendientes
+        $clientesPendientes = $clients->filter(function ($cliente) {
+            return Carbon::parse($cliente->expiration_date)->isToday();
+        })->count();
+
+        return view('dashboard', compact('datos', 'clientesActivos', 'clientesPendientes', 'clientesVencidos', 'totalClientes', 'clients', 'roles'));
     }
 
-    public function register(){
+
+    public function register()
+    {
 
         return view('register.dashboard');
     }
 
-    public function crearusuarios(Request $request){
+    public function crearusuarios(Request $request)
+    {
 
 
         $request->validate([
@@ -69,13 +102,13 @@ class GrlController extends Controller
         $searchTerm = $request->input('search');
 
         $datos = Note::where('title', 'like', '%' . $searchTerm . '%')
-                     ->orWhere('description', 'like', '%' . $searchTerm . '%')
-                     ->get();
+            ->orWhere('description', 'like', '%' . $searchTerm . '%')
+            ->get();
 
         return view('dashboard', ['datos' => $datos]);
     }
 
-//Administradores
+    //Administradores
 
 
     public function administradores()
@@ -162,9 +195,4 @@ class GrlController extends Controller
 
         return redirect()->action([GrlController::class, 'administradores'])->with('success', 'Coordinador eliminado correctamente');
     }
-
-
-
-
-
 }

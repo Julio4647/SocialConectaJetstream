@@ -29,13 +29,13 @@
                         </thead>
                         <tbody class="text-gray-600 text-sm font-light">
                             @foreach ($userAgencies as $user)
-                            @if ($user->agency->first()->id === $coordinatorId)
+                            @if ($user->agency->first() && $user->agency->first()->id === $coordinatorId)
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                                     <td class="py-3 px-6 text-center">{{ $user->name }}</td>
                                     <td class="py-3 px-6 text-center">{{ $user->last_name }}</td>
                                     <td class="py-3 px-6 text-center">{{ $user->email }}</td>
                                     <td class="py-3 px-6 text-left">
-                                        @if ($user->agency->count() > 0)
+                                        @if ($user->agency->count() > 0)7
                                             {{ $user->agency->first()->name }}
                                         @else
                                             No Asignado
@@ -222,7 +222,7 @@
                                     </div>
                                 </div>
 
-                                @elseif ($roles->contains('admin'))
+                             @elseif ($roles->contains('admin'))
 
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                                     <td class="py-3 px-6 text-center">{{ $user->name }}</td>
@@ -419,7 +419,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endif
+                            @endif
                             @endforeach
                         </tbody>
                     </table>
