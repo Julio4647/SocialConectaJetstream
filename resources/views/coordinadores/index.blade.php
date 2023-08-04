@@ -31,11 +31,12 @@
                             @foreach ($userAgencies as $user)
                             @if ($user->agency->first() && $user->agency->first()->id === $coordinatorId)
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                    <td class="py-3 px-6 text-center">{{ $user->id }}</td>
                                     <td class="py-3 px-6 text-center">{{ $user->name }}</td>
                                     <td class="py-3 px-6 text-center">{{ $user->last_name }}</td>
                                     <td class="py-3 px-6 text-center">{{ $user->email }}</td>
                                     <td class="py-3 px-6 text-left">
-                                        @if ($user->agency->count() > 0)7
+                                        @if ($user->agency->count() > 0)
                                             {{ $user->agency->first()->name }}
                                         @else
                                             No Asignado
@@ -59,7 +60,23 @@
                                             <img src="{{ asset('img/eliminar.svg') }}"  alt="">
                                         </button>
                                     </td>
+
+                                    <td class="py-3 px-6 text-center">
+                                        @foreach ($userCom as $userIdss)
+                                <p>{{ $userIdss }}</p>
+                                @endforeach
+                                    </td>
                                 </tr>
+
+
+
+
+
+
+
+
+
+
 
 
 

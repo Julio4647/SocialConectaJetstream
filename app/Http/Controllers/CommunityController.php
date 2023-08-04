@@ -14,15 +14,47 @@ class CommunityController extends Controller
     public function index()
     {
         // Obtiene todos los usuarios con rol "community"
-        $communityUsers = User::role('community')->get();
+        $communityUsers = User::role('community')->get()->unique();
         $coordinators = User::role('coordinador')->get();
         $coordinatorId = Auth::id();
         $user = Auth::user();
         $roles = $user->roles->pluck('name');
 
+        $userIds = [];
+        $userCom = [];
+
+        foreach ($coordinators as $coordinator) {
+            // Comprueba si $coordinator->agency->first() no es nulo antes de acceder a la propiedad 'id'
+            if ($coordinator->agency->first() && $coordinator->agency->first()->id === $coordinatorId) {
+                // Si la condición se cumple, agrega el ID del coordinador actual al array $userIds
+                $userIds[] = $coordinator->id;
+            }
+        }
+
+        foreach ($communityUsers as $user) {
+            // Verifica si el ID del coordinador está en el array $userIds
+            if (in_array($user->coordinators->first()?->id, $userIds)) {
+                // Si el ID del coordinador está en el array $userIds, agrega el modelo actual al array $userCom
+                $userCom[] = $user;
+
+
+            }
+        }
+
+        $matchingUsers = [];
+
+
+
+
+
+
+
+// $matchingUsers ahora contendrá los usuarios cuyos coordinadores tienen el mismo ID que el coordinador actual ($coordinatorId)
+// Puedes hacer lo que necesites con los datos en $matchingUsers
+
 
         // Retorna la vista con la lista de usuarios "communitys"
-        return view('community.dashboard', compact('communityUsers', 'coordinators', 'coordinatorId', 'roles'));
+        return view('community.dashboard', compact('communityUsers', 'coordinators', 'coordinatorId', 'roles', 'userCom'));
     }
 
 

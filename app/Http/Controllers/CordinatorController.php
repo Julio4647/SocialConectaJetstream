@@ -17,15 +17,44 @@ class CordinatorController extends Controller
     {
         $userAgencies = User::role('coordinador')->get();
         $agencies = User::role('agency')->get();
+        $communityUsers = User::role('community')->get();
+
 
         $coordinatorId = Auth::id();
         $user = Auth::user();
         $roles = $user->roles->pluck('name');
 
+
+        $userIds = [];
+        $userCom = [];
+
+        foreach ($userAgencies as $users) {
+            // Comprueba si $users->agency->first() no es nulo antes de acceder a la propiedad 'id'
+            if ($users->agency->first()?->id === $coordinatorId) {
+                // Si la condición se cumple, agrega el ID del usuario actual al array $userIds
+                $userIds[] = $users->id;
+            } else {
+                // Puedes agregar un bloque de código aquí para manejar el caso en que la condición no se cumpla, si es necesario.
+            }
+        }
+
+
+        foreach ($communityUsers as $userss) {
+            // Verifica si el ID del coordinador está en el array $userIds
+            if (in_array($userss->coordinators->first()?->id, $userIds)) {
+                // Si el ID del coordinador está en el array $userIds, agrega el ID del usuario actual al array $userCom
+                $userCom[] = $userss;
+            }
+        }
+
+
+
+
         $coordinatorAgency = $user->agency;
 
 
-        return view('coordinadores.dashboard', compact('userAgencies', 'agencies', 'coordinatorId', 'roles', 'coordinatorAgency'));
+
+        return view('coordinadores.dashboard', compact('userAgencies', 'agencies', 'coordinatorId', 'roles', 'coordinatorAgency', 'userIds', 'userCom'));
     }
 
     public function create()
