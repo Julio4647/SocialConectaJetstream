@@ -25,7 +25,9 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
-                        @foreach ($communityUsers as $user)
+                         @foreach ($communityUsers as $user)
+
+                          <!-- validación coordinadores -->
                             @if ($user->coordinators->contains('id', $coordinatorId))
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                                     <td class="py-3 px-6 text-left">{{ $user->name }}</td>
@@ -57,7 +59,9 @@
                                             <img src="{{ asset('img/eliminar.svg') }}" alt="">
                                         </button>
                                     </td>
+
                                 </tr>
+
 
 
                                 <!-- Modal para confirmar la eliminación -->
@@ -225,6 +229,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                             <!-- validación mostrar todos admin -->
                             @elseif ($roles->contains('admin'))
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                                     <td class="py-3 px-6 text-left">{{ $user->name }}</td>
@@ -428,8 +434,15 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                             <!-- Validación para mostrar solo los agency -->
                             @elseif ($roles->contains('agency'))
-                                <tr class="border-b border-gray-200 hover:bg-gray-100">
+
+                            @foreach ($userCom as $user)
+
+
+                                <tr>
                                     <td class="py-3 px-6 text-left">{{ $user->name }}</td>
                                     <td class="py-3 px-6 text-left">{{ $user->last_name }}</td>
                                     <td class="py-3 px-6 text-left">
@@ -443,8 +456,9 @@
                                     <td class="py-3 px-6 text-left">{{ $user->email }}</td>
                                     <td class="py-3 px-6 text-left">
                                         @foreach ($user->roles as $role)
-                                            {{ $role->name }}
-                                        @endforeach
+                                            {{ $role->name }} <!-- Muestra los roles de cada usuario -->
+
+                                          @endforeach
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         <button data-modal-target="actualizar-modal-{{ $user->id }}"
@@ -462,7 +476,9 @@
                                             class="text-white bg-gradient-to-br from-red-600 to-red-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                             <img src="{{ asset('img/eliminar.svg') }}" alt="">
                                         </button>
+
                                     </td>
+
                                 </tr>
 
 
@@ -611,6 +627,7 @@
                                                             @foreach ($coordinators as $coordinator)
                                                                 <option value="{{ $coordinator->id }}">
                                                                     {{ $coordinator->name }}</option>
+
                                                             @endforeach
                                                         </select>
                                                         @error('coordinador_id')
@@ -631,7 +648,14 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+                                @endforeach
                             @endif
+                            @php
+                            break;
+                        @endphp
                         @endforeach
                     </tbody>
                 </table>
