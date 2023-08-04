@@ -14,7 +14,7 @@ class CommunityController extends Controller
     public function index()
     {
         // Obtiene todos los usuarios con rol "community"
-        $communityUsers = User::role('community')->get()->unique();
+        $communityUsers = User::role('community')->get();
         $coordinators = User::role('coordinador')->get();
         $coordinatorId = Auth::id();
         $user = Auth::user();
