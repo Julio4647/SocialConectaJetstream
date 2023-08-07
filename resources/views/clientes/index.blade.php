@@ -5,7 +5,7 @@
     <div class="p-4 dark:border-gray-700 mt-14">
         <div class="my-6">
             <h1 style="font-size: 1.5rem">
-                <p>Clientes</p>
+                <p>CLIENTES</p>
             </h1>
         </div>
         <a href="{{ route('clients.create') }}" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
@@ -36,7 +36,7 @@
                         @foreach ($clients as $cliente)
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
                                 <td class="py-3 px-6 text-center">{{ $cliente->id }}</td>
-                                <td class="py-3 px-6 text-center">{{ $cliente->users ? $cliente->users->name : 'Sin community asignado' }}</td>
+                                <td class="py-3 px-6 text-center">{{ $cliente->users ? $cliente->users->name : 'Sin community asignado' }} {{$cliente->users->last_name }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->name }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->last_name }}</td>
                                 <td class="py-3 px-6 text-center">{{ $cliente->phone }}</td>
@@ -66,7 +66,7 @@
                                         $diasDiferencia = Carbon\Carbon::parse($cliente->pay_day)->diffInDays(Carbon\Carbon::parse($cliente->expiration_date));
                                         $plazo = '';
                                         if ($diasDiferencia  > 365  *  3) {
-                                            $plazo = 'For Life';
+                                            $plazo = 'Por Siempre';
                                         } elseif ($diasDiferencia >= 365 && $diasDiferencia  <= 365  *   3) {
                                             $plazo = 'Anual';
                                         } elseif ($diasDiferencia >= 30 && $diasDiferencia < 365) {
@@ -79,7 +79,7 @@
                                         <span class="text-green-500">{{ $plazo }}</span>
                                     @elseif ($plazo === 'Anual')
                                         <span class="text-blue-500">{{ $plazo }}</span>
-                                    @elseif ($plazo === 'For Life')
+                                    @elseif ($plazo === 'Por Siempre')
                                         <span class="text-purple-500">{{ $plazo }}</span>
                                     @elseif ($plazo === 'No definido')
                                         <span class="text-red-500">{{ $plazo }}</span>
@@ -96,8 +96,6 @@
 
                                     </td>
                             </tr>
-
-
                             <div id="popup-modal-{{ $cliente->id }}" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                 <div class="relative w-full max-w-md max-h-full">
                                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">

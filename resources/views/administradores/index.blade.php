@@ -5,10 +5,9 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4  border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="my-6">
-            <h1 style="font-size: 1.5rem"><p>Administradores</p></h1>
+            <h1 style="font-size: 1.5rem"><p>ADMINISTRADOR</p></h1>
         </div>
         <div class="bg-white shadow-2xl rounded my-6">
-
             <div class="overflow-x-auto mt-4">
                 <table class="min-w-max w-full table-auto rounded-lg" style="margin-top: 15px">
                     <thead>

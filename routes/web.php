@@ -22,6 +22,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/acceso-denegado', function () {
+    return view('errors.403');
+})->name('acceso-denegado');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -30,7 +35,7 @@ Route::middleware([
     Route::get('dashboard',[GrlController::class,'index'
     ])->name('dashboard');
 
-    Route::get('/resgistro_usuarios', [GrlController::class,'register'])->name('register');
+    Route::get('/resgistro_usuarios', [GrlController::class,'register'])->name('register')->middleware('role');
 
     Route::post('/resgistro_usuarios', [GrlController::class,'crearusuarios'])->name('registro.save');
 
@@ -40,42 +45,42 @@ Route::middleware([
     //Administardores
 
     Route::get('administradores', [GrlController::class, 'administradores'
-    ])->name('administradores');
+    ])->name('administradores')->middleware('role');
 
     Route::get('/crear-administradores', [GrlController::class, 'crearadministradores'
-    ])->name('administradores.crear');
+    ])->name('administradores.crear')->middleware('role');
 
-    Route::post('/administradores', [GrlController::class, 'guardaradministradores'])->name('administradores.guardar');
+    Route::post('/administradores', [GrlController::class, 'guardaradministradores'])->name('administradores.guardar')->middleware('role');
 
-    Route::delete('/administradores/{id}', [GrlController::class, 'eliminaradministradores'])->name('administradores.eliminar');
+    Route::delete('/administradores/{id}', [GrlController::class, 'eliminaradministradores'])->name('administradores.eliminar')->middleware('role');
     //Actualizar
 
-    Route::put('/administradores/{id}',  [GrlController::class, 'updateadministradores'])->name('administradores.actualizar');
+    Route::put('/administradores/{id}',  [GrlController::class, 'updateadministradores'])->name('administradores.actualizar')->middleware('role');
 
 
 
 
     //agency
-    Route::get('/agencys', [AgencyController::class, 'index'])->name('agencys');
+    Route::get('/agencys', [AgencyController::class, 'index'])->name('agencys')->middleware('role');
 
 
-    Route::delete('/agencys/{id}', [AgencyController::class, 'destroy'])->name('agencies.destroy');
+    Route::delete('/agencys/{id}', [AgencyController::class, 'destroy'])->name('agencies.destroy')->middleware('role');
 
 
     //Coordinador
 
     Route::get('cordinadores', [CordinatorController::class,'index'
-    ])->name('cordinador');
-    Route::get('/coordinadores/register', [CordinatorController::class, 'create'])->name('coordinador.create');
-    Route::post('/coordinadores/register', [CordinatorController::class, 'store'])->name('coordinador.register');
+    ])->name('cordinador')->middleware('acceso2');
+    Route::get('/coordinadores/register', [CordinatorController::class, 'create'])->name('coordinador.create')->middleware('acceso2');
+    Route::post('/coordinadores/register', [CordinatorController::class, 'store'])->name('coordinador.register')->middleware('acceso2');
 
-    Route::put('/coordinadores/{coordinatorId}',  [CordinatorController::class, 'updateAgencyId'])->name('user_agency.update');
+    Route::put('/coordinadores/{coordinatorId}',  [CordinatorController::class, 'updateAgencyId'])->name('user_agency.update')->middleware('acceso2');
 
-    Route::delete('/cordinadores/{id}', [CordinatorController::class, 'destroy'])->name('coordinators.destroy');
+    Route::delete('/cordinadores/{id}', [CordinatorController::class, 'destroy'])->name('coordinators.destroy')->middleware('acceso2');
 
 
     //Communitys
-    Route::get('/communitys', [CommunityController::class, 'index'])->name('communitys');
+    Route::get('/communitys', [CommunityController::class, 'index'])->name('communitys')->middleware('acceso3');;
 
     Route::get('/community/register', [CommunityController::class, 'showRegistrationForm'])->name('community.create');
     Route::post('/community/register', [CommunityController::class, 'register'])->name('community.register');

@@ -4,14 +4,14 @@
     <div class="p-4 dark:border-gray-700 mt-14">
         <div class="my-6">
             <h1 style="font-size: 1.5rem">
-                <p>Community Manager</p>
+                <p>COMMUNITY MANAGER</p>
             </h1>
         </div>
-        <div class="bg-white shadow-2xl rounded my-6">
-            <a href="{{ route('community.create') }}"
+        <a href="{{ route('community.create') }}"
                 class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                Asignar Coordinador a Community Manager
-            </a>
+                Asignar Coordinador a Community
+        </a>
+        <div class="bg-white shadow-2xl rounded my-6">
             <div class="overflow-x-auto">
                 <table class="min-w-max w-full table-auto" style="margin-top: 15px">
                     <thead>

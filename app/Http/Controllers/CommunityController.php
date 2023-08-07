@@ -41,17 +41,6 @@ class CommunityController extends Controller
             }
         }
 
-        $matchingUsers = [];
-
-
-
-
-
-
-
-// $matchingUsers ahora contendrá los usuarios cuyos coordinadores tienen el mismo ID que el coordinador actual ($coordinatorId)
-// Puedes hacer lo que necesites con los datos en $matchingUsers
-
 
         // Retorna la vista con la lista de usuarios "communitys"
         return view('community.dashboard', compact('communityUsers', 'coordinators', 'coordinatorId', 'roles', 'userCom'));
