@@ -59,7 +59,7 @@ class CommunityController extends Controller
     {
         $request->validate([
             'user_id' => 'required',
-            'coordinador_id' => 'required|exists:users,id',
+            'coordinador_id' => 'required',
         ]);
 
         // Obtener el ID del coordinador seleccionado

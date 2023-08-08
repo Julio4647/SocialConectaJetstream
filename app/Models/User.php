@@ -87,6 +87,12 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'user_coordinator', 'user_id', 'coordinator_id');
     }
 
+    public function coordinatorss()
+    {
+        return $this->belongsToMany(User::class, 'user_coordinator', 'user_id', 'coordinator_id')
+            ->withPivot('id');
+    }
+
     public function communities()
     {
         return $this->belongsToMany(User::class, 'user_coordinator', 'coordinator_id', 'user_id');

@@ -34,9 +34,14 @@ class AgencyController extends Controller
 
 
         $userAgencyRows = UserAgency::where('agency_id', $id)->get();
+        $associatedUsers = UserCoordinator::where('coordinator_id', $id)->get();
+
 
         // Establecer coordinator_id como null para los usuarios asociados
-
+        $associatedUsers->each(function ($user) {
+            $user->coordinator_id = null;
+            $user->save();
+        });
 
 
         $userAgencyRows->each(function ($user) {

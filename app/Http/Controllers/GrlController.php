@@ -78,7 +78,17 @@ class GrlController extends Controller
 
         $administradores->assignRole($request['role']);
 
-        return redirect()->route('register');
+        // Redirigir según el rol asignado
+        if ($request->role === 'admin') {
+            return redirect()->route('administradores'); // Cambia 'vista1' por el nombre de tu ruta
+        } elseif ($request->role === 'agency') {
+            return redirect()->route('agencys'); // Cambia 'vista2' por el nombre de otra ruta
+        }  elseif ($request->role === 'coordinador') {
+            return redirect()->route('cordinador'); // Cambia 'vista2' por el nombre de otra ruta
+        }else {
+            return redirect()->route('communitys'); // Redirigir a una vista por defecto o manejar otros casos
+        }
+
     }
 
     public function guardarNota(Request $request)

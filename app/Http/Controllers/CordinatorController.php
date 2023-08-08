@@ -122,43 +122,33 @@ class CordinatorController extends Controller
         DB::beginTransaction();
 
         try {
-          // Obtener el usuario "coordinador" por su id
-        $user = User::findOrFail($id);
+            $coordinador = User::findOrFail($id);
 
-        // Obtener las agencias asociadas al usuario como coordinador
-
+        // Obtener los usuarios asociados que tienen este coordinador asignado
         $associatedUsers = UserCoordinator::where('coordinator_id', $id)->get();
 
-        $userAgencyRows = UserAgency::where('coordinator_id', $id)->get();
-
         // Establecer coordinator_id como null para los usuarios asociados
-
         $associatedUsers->each(function ($user) {
             $user->coordinator_id = null;
             $user->save();
         });
 
-        $userAgencyRows->each(function ($user) {
-            $user->coordinator_id = null;
-            $user->save();
-        });
-
-
-
-        // Eliminar el usuario de la tabla users
-        $user->delete();
+        // Eliminar al coordinador de la tabla users
+        $coordinador->delete();
 
         // Confirmar la transacción
         DB::commit();
 
-            return redirect()->route('agencys')->with('success', 'Asignación eliminada correctamente. El usuario con rol de agencia ha sido actualizado.');
+
+            return redirect()->route('cordinador')->with('success', 'Coordinador eliminado correctamente. Los communitys asociados se han actualizado.');
         } catch (\Exception $e) {
             // En caso de error, deshacer la transacción
             DB::rollback();
-
             dd($e);
 
-            return redirect()->route('agencys')->with('error', 'No se pudo eliminar la asignación. Inténtalo de nuevo más tarde.');
+            return redirect()->route('cordinador')->with('error', 'No se pudo eliminar el coordinador. Inténtalo de nuevo más tarde.');
         }
     }
+
+
 }

@@ -36,7 +36,7 @@
 
 
                             <div class="w-full p-2 py-5">
-                                <button type="submit" class="w-full bg-indigo-500 text-white font-bold py-2 px-4 rounded">Registrar</button>
+                                <button type="submit" class="w-full bg-indigo-500 text-white font-bold py-2 px-4 rounded">Asignar</button>
                             </div>
                         </form>
 

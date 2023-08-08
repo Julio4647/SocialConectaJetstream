@@ -94,7 +94,7 @@ Route::middleware([
      Route::get('/clientes', [ClientController::class, 'index'])->name('clientes');
 
      // Mostrar formulario para registrar clientes
-    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create')->middleware('acceso2');
 
     // Guardar cliente en la base de datos
     Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
