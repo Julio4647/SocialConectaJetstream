@@ -9,6 +9,7 @@
     <div class="">
         <div class=" ">
             <div class="bg-white ">
+
                 <div class="p-4 sm:ml-64">
                     <div class="p-4 dark:border-gray-700 mt-14">
                         <button onclick="window.location='{{ route('clientes') }}'"
@@ -22,13 +23,7 @@
                             class="flex flex-wrap justify-center">
                             @csrf
 
-                            @php
-                                $user = Auth::user();
 
-                                // Obtener los roles del usuario usando la relación "roles"
-                                $roles = $user->roles->pluck('name');
-
-                            @endphp
                             <div class="w-full md:w-1/3 p-2">
                                 <label for="name">Nombre:</label>
                                 <input type="text" name="name" required
@@ -58,11 +53,11 @@
                                 <select name="plan" required
                                     class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     <option value="">Seleccionar Plan</option>
-                                    <option value="esencial">Esencial</option>
-                                    <option value="indispensable">Indispensable</option>
-                                    <option value="todo_en_uno">Todo en Uno</option>
-                                    <option value="profesional">Profesional</option>
-                                    <option value="omnipresente">Omnipresente</option>
+                                    <option value="esencial">esencial</option>
+                                    <option value="indispensable">indispensable</option>
+                                    <option value="todo_en_uno">todo en Uno</option>
+                                    <option value="profesional">profesional</option>
+                                    <option value="omnipresente">omnipresente</option>
 
                                 </select>
                             </div>
@@ -97,7 +92,7 @@
                                     class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     <option value="">Selecciona un Community Manager</option>
                                     @foreach ($communities as $community)
-                                        <option value="{{ $community->id }}">{{ $community->name }}</option>
+                                        <option value="{{ $community->id }}">{{ $community->name }} {{ $community->last_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -112,6 +107,7 @@
 
                     </div>
                 </div>
+
 
             </div>
         </div>

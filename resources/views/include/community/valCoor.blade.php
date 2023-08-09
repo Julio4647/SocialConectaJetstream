@@ -18,19 +18,7 @@
                  {{ $role->name }}
              @endforeach
          </td>
-         <td class="py-3 px-6 text-center">
-             <button data-modal-target="actualizar-modal-{{ $user->id }}"
-                 data-modal-toggle="actualizar-modal-{{ $user->id }}" type="button"
-                 class="text-gray-900 bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                 <img src="{{ asset('img/edit.svg') }}" alt="">
-             </button>
 
-             <button data-modal-target="popup-modal-{{ $user->id }}"
-                 data-modal-toggle="popup-modal-{{ $user->id }}" type="button"
-                 class="text-white bg-gradient-to-br from-red-600 to-red-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                 <img src="{{ asset('img/eliminar.svg') }}" alt="">
-             </button>
-         </td>
 
      </tr>
 
@@ -164,10 +152,10 @@
                              <select id="coordinador_id"
                                  class="form-control @error('coordinador_id') is-invalid @enderror"
                                  name="coordinador_id" required>
-                                 <option value="">Select Coordinator</option>
+                                 <option value="">Seleccionar Coordinador</option>
                                  @foreach ($coordinators as $coordinator)
                                      <option value="{{ $coordinator->id }}">
-                                         {{ $coordinator->name }}</option>
+                                         {{ $coordinator->name }} {{ $coordinator->last_name }}</option>
                                  @endforeach
                              </select>
                              @error('coordinador_id')
@@ -260,10 +248,10 @@
                              <select id="coordinador_id"
                                  class="rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('coordinador_id') is-invalid @enderror"
                                  name="coordinador_id" required>
-                                 <option value="">Select Coordinator</option>
+                                 <option value="">Seleciona Coordinador</option>
                                  @foreach ($coordinators as $coordinator)
                                      <option value="{{ $coordinator->id }}">
-                                         {{ $coordinator->name }}</option>
+                                         {{ $coordinator->name }} {{ $coordinator->last_name }}</option>
                                  @endforeach
                              </select>
                              @error('coordinador_id')

@@ -87,8 +87,36 @@ class ClientController extends Controller
 
 
 
+
+
+
         return view('clientes.dashboard', compact('clients'));
     }
+
+
+    public function search(Request $request)
+    {
+        // Resto del código del controlador...
+
+        $searchQuery = $request->query('search');
+
+            // Lógica para obtener los clientes según la búsqueda
+            // Utiliza $searchQuery para filtrar los resultados si es necesario
+
+            $clients = Client::whereRaw("CONCAT(name, ' ', last_name) LIKE ?", ["%{$searchQuery}%"])->get();
+
+
+
+            return view('clientes.dashboard', compact('clients'));
+
+    }
+
+
+    public function reset(Request $request)
+    {
+        return redirect()->route('clientes');
+    }
+
 
 
     public function create()
@@ -114,6 +142,7 @@ class ClientController extends Controller
             'communitys_id' => 'required|exists:users,id',
         ]);
 
+
         // Verificar si el usuario ya tiene 17 clientes asignados
         $communityId = $validatedData['communitys_id'];
         $assignedClientsCount = Client::where('communitys_id', $communityId)->count();
@@ -136,7 +165,14 @@ class ClientController extends Controller
         $client = Client::findOrFail($id);
         $communities = User::role('community')->get();
 
-        return view('clientes.update', compact('client', 'communities'));
+        $user = Auth::user();
+
+        // Obtener los roles del usuario usando la relación "roles"
+        $roles = $user->roles->pluck('name');
+
+
+
+        return view('clientes.update', compact('client', 'communities','roles'));
     }
 
     public function update(Request $request, $id)
@@ -154,8 +190,11 @@ class ClientController extends Controller
             'communitys_id' => 'required|exists:users,id',
         ]);
 
+
+
         $client = Client::findOrFail($id);
         $client->update($validatedData);
+
 
         return redirect()->route('clientes')->with('success', 'Cliente actualizado exitosamente.');
     }

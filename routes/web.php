@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgencyController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CordinatorController;
@@ -94,7 +95,7 @@ Route::middleware([
      Route::get('/clientes', [ClientController::class, 'index'])->name('clientes');
 
      // Mostrar formulario para registrar clientes
-    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create')->middleware('acceso2');
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create')->middleware('acceso4');
 
     // Guardar cliente en la base de datos
     Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
@@ -107,6 +108,19 @@ Route::middleware([
 
     Route::delete('/clients/{id}', [ClientController::class, 'destroy'] )->name('clients.destroy');
 
+    Route::get('/clients/search', [ClientController::class, 'search'])->name('clients.search');
 
+    Route::get('/clients', [ClientController::class, 'reset'])->name('clients.reset');
+
+
+    //Calendar
+
+    Route::resource('calendar', CalendarController::class)->only(['index','edit','store']);
+    Route::controller(CalendarController::class)->group(function () {
+    Route::get('getevents','getEvents')->name('calendar.getevents');
+    Route::put('update/events','updateEvents')->name('calendar.updateevents');
+    Route::post('resize/events','resizeEvents')->name('calendar.resizeevents');
+    Route::post('drop/events','dropEvents')->name('calendar.dropevents');
+    });
 
 });

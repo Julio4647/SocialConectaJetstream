@@ -9,27 +9,29 @@
 </head>
 
 <body>
-      <div class="container mx-auto" style="margin-top: 15px">
+    <div class="container mx-auto" style="margin-top: 15px">
         <form action="{{ route('notes.search') }}" method="POST" class="flex flex-wrap items-center justify-between">
             @csrf
             <div class="w-full sm:w-auto mb-2 sm:mb-0 sm:flex-grow sm:mr-2">
-              <div class="flex items-center">
-                <span class="w-full text-purple-900 text-xl sm:w-auto">Plan de contenidos</span>
-                <input name="search" type="text" placeholder="Buscar notas..." class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-              </div>
+                <div class="flex items-center">
+                    <span class="w-full text-purple-900 text-xl sm:w-auto">Plan de contenidos</span>
+                    <input name="search" type="text" placeholder="Buscar notas..."
+                        class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
             </div>
             <div class="w-full  sm:w-auto mb-2 sm:mb-0 sm:mr-2">
-              <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buscar</button>
+                <button type="submit"
+                    class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buscar</button>
             </div>
-            <div class="w-full sm:w-auto mb-2 sm:mb-0">
-              <button type="button" id="resetButton" class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reiniciar</button>
-            </div>
+
             <div class="w-full sm:w-auto">
-              <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                Nueva Nota
-              </button>
+                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                    class="w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button">
+                    Nueva Nota
+                </button>
             </div>
-          </form>
+        </form>
 
 
 
@@ -37,12 +39,12 @@
         <div class="card-wrapper mt-4 overflow-y-auto max-h-96">
             <div class="cards-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 @foreach ($datos as $item)
-                <div class="card mb-4 bg-white rounded shadow">
-                    <div class="card-body">
-                        <h5 class="card-title text-lg font-bold mb-2">{{ $item->title }}</h5>
-                        <div class="card-text text-gray-700">{{ $item->description }}</div>
+                    <div class="card mb-4 bg-white rounded shadow">
+                        <div class="card-body">
+                            <h5 class="card-title text-lg font-bold mb-2">{{ $item->title }}</h5>
+                            <div class="card-text text-gray-700">{{ $item->description }}</div>
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
@@ -94,11 +96,14 @@
     </div>
     </div>
     <script>
-  document.getElementById('resetButton').addEventListener('click', function() {
-    document.querySelector('input[name="search"]').value = '';
-    document.querySelector('form').submit();
-  });
-</script>
+        document.getElementById('resetButton').addEventListener('click', function() {
+            console.log("Reset button clicked"); // Debugging line
+            document.querySelector('input[name="search"]').value = '';
+            console.log("Search input cleared"); // Debugging line
+            document.querySelector('form').submit();
+            console.log("Form submitted"); // Debugging line
+        });
+    </script>
 </body>
 
 </html>

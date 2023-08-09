@@ -1,5 +1,10 @@
 @include('layouts.sidenav')
+@php
+    $user = Auth::user();
 
+    // Obtener los roles del usuario usando la relación "roles"
+    $roles = $user->roles->pluck('name');
+@endphp
 <div class="p-4 sm:ml-64">
     <div class="p-4 dark:border-gray-700 mt-14">
         <div class="my-6">
@@ -21,7 +26,10 @@
                             <th class="py-3 px-6 text-left">Coordinador</th>
                             <th class="py-3 px-6 text-left">Email</th>
                             <th class="py-3 px-6 text-left">Role</th>
+                            @if ($roles->contains('admin'))
+
                             <th class="py-3 px-6 text-center">Acciones</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">

@@ -14,6 +14,7 @@
                         <form action="{{ route('clients.update', $client->id) }}" method="POST" class="flex flex-wrap justify-center">
                             @csrf
                             @method('PUT')
+
                             <div class="w-full md:w-1/3 p-2">
                                 <label for="name">Nombre:</label>
                                 <input type="text" name="name" value="{{ $client->name }}" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -37,12 +38,12 @@
                             <div class="w-full md:w-1/3 p-2">
                                 <label for="text">Plan:</label>
                                 <select  name="plan" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    <option value="">{{ $client->plan}}</option>
-                                    <option value="esencial">Esencial</option>
-                                    <option value="indispensable">Indispensable</option>
-                                    <option value="todo_en_uno">Todo en Uno</option>
-                                    <option value="profesional">Profesional</option>
-                                    <option value="omnipresente">Omnipresente</option>
+                                    <option value="{{ $client->plan}}">{{ $client->plan}}</option>
+                                    <option value="esencial">esencial</option>
+                                    <option value="indispensable">indispensable</option>
+                                    <option value="todo_en_uno">todo en Uno</option>
+                                    <option value="profesional">profesional</option>
+                                    <option value="omnipresente">omnipresente</option>
 
                                 </select>
                             </div>
@@ -68,6 +69,7 @@
                             </div>
 
                             <div class="w-full p-2">
+
                                 <label for="communitys_id">ID de comunidad:</label>
                                 <select name="communitys_id" required class="w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     <option value="">Selecciona un Community Manager</option>

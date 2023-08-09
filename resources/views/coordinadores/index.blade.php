@@ -47,19 +47,6 @@
                                             {{ $role->name }}
                                         @endforeach
                                     </td>
-                                    <td class="py-3 px-6 text-center">
-                                        <button data-modal-target="actualizar-modal-{{ $user->id }}"
-                                            data-modal-toggle="actualizar-modal-{{ $user->id }}" type="button"
-                                            class="text-gray-900 bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                                            <img src="{{ asset('img/edit.svg') }}"  alt="">
-                                        </button>
-
-                                        <button data-modal-target="popup-modal-{{ $user->id }}"
-                                            data-modal-toggle="popup-modal-{{ $user->id }}" type="button"
-                                            class="text-white bg-gradient-to-br from-red-600 to-red-800 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                                            <img src="{{ asset('img/eliminar.svg') }}"  alt="">
-                                        </button>
-                                    </td>
                                 </tr>
 
 
@@ -109,7 +96,7 @@
                                                         <select id="agency_id" class="form-control @error('agency_id') is-invalid @enderror" name="agency_id" required>
                                                             <option value="">Select Coordinador</option>
                                                             @foreach ($agencies as $agency)
-                                                                <option value="{{ $agency->id }}">{{ $agency->name }}</option>
+                                                                <option value="{{ $agency->id }}">{{ $agency->name }} {{ $agency->last_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('agency_id')
@@ -205,7 +192,7 @@
                                                         <select id="agency_id" class="rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('agency_id') is-invalid @enderror" name="agency_id" required>
                                                             <option value="">Seleccionar Coordinador</option>
                                                             @foreach ($agencies as $agency)
-                                                                <option value="{{ $agency->id }}">{{ $agency->name }}</option>
+                                                                <option value="{{ $agency->id }}">{{ $agency->name }} {{ $agency->last_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('agency_id')

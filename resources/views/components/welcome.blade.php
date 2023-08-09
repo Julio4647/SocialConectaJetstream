@@ -1,14 +1,20 @@
 @include('layouts.sidenav')
+@php
+    $user = Auth::user();
 
+    // Obtener los roles del usuario usando la relación "roles"
+    $roles = $user->roles->pluck('name');
+@endphp
 <div class="p-4 sm:ml-64">
     <div class="p-4  border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        @if ($roles->contains('admin'))
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-4">
             <div class="flex items-center justify-center rounded">
                 <div class="max-w-xs">
                     <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
                         <img src="{{ asset('img/user.svg') }}" alt="" class="mr-2">
-                        <p class="text-lg text-gray-400 dark:text-gray-500 ">
-                            Clientes {{$totalClientes}}
+                        <p class="text-lg text-black-400 dark:text-black-500 ">
+                            Clientes {{$totalClientes }}
                         </p>
                     </div>
                 </div>
@@ -17,8 +23,8 @@
                 <div class="max-w-xs">
                     <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
                         <img src="{{ asset('img/renew.svg') }}" alt="" class="mr-2">
-                        <p class="text-md text-gray-400 dark:text-gray-500">
-                            Renovados {{ $clientesActivos }}
+                        <p class="text-md text-black-400 dark:text-black-500">
+                            Activos {{ $clientesActivos }}
                         </p>
                     </div>
 
@@ -28,7 +34,7 @@
                 <div class="max-w-xs">
                     <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
                         <img src="{{ asset('img/cancel.svg') }}" alt="" class="mr-2">
-                        <p class="text-md text-gray-400 dark:text-gray-500">
+                        <p class="text-md text-black-400 dark:text-black-500">
                             Cancelados {{ $clientesVencidos }}
                         </p>
                     </div>
@@ -39,13 +45,152 @@
                 <div class="max-w-xs">
                     <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
                         <img src="{{ asset('img/pause.svg') }}" alt="" class="mr-2">
-                        <p class="text-lg text-gray-400 dark:text-gray-500">
+                        <p class="text-lg text-black-400 dark:text-black-500">
                             Pausados {{$clientesPendientes}}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+        @elseif ($roles->contains('community'))
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-4">
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/user.svg') }}" alt="" class="mr-2">
+                        <p class="text-lg text-black-400 dark:text-black-500 ">
+                            Clientes {{$totalClientes}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/renew.svg') }}" alt="" class="mr-2">
+                        <p class="text-md text-black-400 dark:black-gray-500">
+                            Activos {{ $clientesActivos }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/cancel.svg') }}" alt="" class="mr-2">
+                        <p class="text-md text-black-400 dark:text-black-500">
+                            Cancelados {{ $clientesVencidos }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/pause.svg') }}" alt="" class="mr-2">
+                        <p class="text-lg text-black-400 dark:text-black-500">
+                            Pausados {{$clientesPendientes}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @elseif ($roles->contains('agency'))
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-4">
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/user.svg') }}" alt="" class="mr-2">
+                        <p class="text-lg text-black-400 dark:text-black-500 ">
+                            Clientes {{$totalClientes}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/renew.svg') }}" alt="" class="mr-2">
+                        <p class="text-md text-black-400 dark:black-gray-500">
+                            Activos {{ $clientesActivos }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/cancel.svg') }}" alt="" class="mr-2">
+                        <p class="text-md text-black-400 dark:text-black-500">
+                            Cancelados {{ $clientesVencidos }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/pause.svg') }}" alt="" class="mr-2">
+                        <p class="text-lg text-black-400 dark:text-black-500">
+                            Pausados {{$clientesPendientes}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @elseif ($roles->contains('coordinador'))
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-4">
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/user.svg') }}" alt="" class="mr-2">
+                        <p class="text-lg text-black-400 dark:text-black-500 ">
+                            Clientes {{$totalClientes}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/renew.svg') }}" alt="" class="mr-2">
+                        <p class="text-md text-black-400 dark:black-gray-500">
+                            Activos {{ $clientesActivos }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/cancel.svg') }}" alt="" class="mr-2">
+                        <p class="text-md text-black-400 dark:text-black-500">
+                            Cancelados {{ $clientesVencidos }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex items-center justify-center rounded">
+                <div class="max-w-xs">
+                    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 flex items-center">
+                        <img src="{{ asset('img/pause.svg') }}" alt="" class="mr-2">
+                        <p class="text-lg text-black-400 dark:text-black-500">
+                            Pausados {{$clientesPendientes}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @endif
 
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
             <!-- Carousel wrapper -->
@@ -124,6 +269,7 @@
         </div>
         @include('note.note')
 
+        {{--@include('calender.calendar')--}}
 
 
 
